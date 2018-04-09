@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.com.viniciusdeep.agenda.Dao.AlunoDao;
 import br.com.viniciusdeep.agenda.modelo.Aluno;
 
 public class FormularioActivity extends AppCompatActivity {
@@ -58,6 +59,13 @@ public class FormularioActivity extends AppCompatActivity {
             case R.id.menu_ok:
                 Aluno aluno = helper.pegaAluno();
                 Toast.makeText(FormularioActivity.this, "Aluno " + aluno.getNome() + " Salvo", Toast.LENGTH_SHORT).show();
+
+                AlunoDao dao = new AlunoDao(this);
+                dao.insert(aluno);
+                dao.close();
+
+
+
 
                 finish();
                 break;
