@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.viniciusdeep.agenda.ListaAlunosActivity">
+
+    <item android:id="@+id/menu_ok"
+        android:title="Ok"
+        android:icon="@drawable/right"
+        app:showAsAction="always"
+
+        />
+
+</menu>
