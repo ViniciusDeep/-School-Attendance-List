@@ -1,6 +1,6 @@
 package br.com.viniciusdeep.agenda.modelo;
 
-
+import java.util.List;
 
 public class Aluno {
 
@@ -66,6 +66,9 @@ public class Aluno {
     }
 
 
+    public String toString() {
+        return getId() + " - " + getNome();
+    }
 
 
 }

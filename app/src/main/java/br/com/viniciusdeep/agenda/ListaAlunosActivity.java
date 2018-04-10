@@ -13,6 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.List;
+
+import br.com.viniciusdeep.agenda.Dao.AlunoDao;
+import br.com.viniciusdeep.agenda.modelo.Aluno;
+
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
@@ -33,11 +38,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         });
 
 
-        String[] alunos = {"Vinicius", "Thalysson"};
-        final ListView listaAlunos = (ListView) findViewById(R.id.lista_alunos);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alunos);
-        listaAlunos.setAdapter(adapter);
 
         Button novoAluno = (Button) findViewById(R.id.criarAluno);
         novoAluno.setOnClickListener(new View.OnClickListener() {
@@ -49,8 +50,21 @@ public class ListaAlunosActivity extends AppCompatActivity {
         });
     }
 
+    private void chargeList() {
+        AlunoDao dao = new AlunoDao(this);
+        List<Aluno> alunos = dao.buscaAlunos();
+        dao.close();
 
 
+        final ListView listaAlunos = (ListView) findViewById(R.id.lista_alunos);
 
+        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
+        listaAlunos.setAdapter(adapter);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        chargeList();
+    }
 }
