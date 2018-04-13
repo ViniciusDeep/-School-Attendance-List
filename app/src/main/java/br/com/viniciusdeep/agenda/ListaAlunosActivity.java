@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,21 +31,29 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
         listaAlunos = (ListView) findViewById(R.id.lista_alunos);
+        listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> list, View item, int position, long id) {
+                Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(position);
+                Intent intent = new Intent(ListaAlunosActivity.this,FormularioActivity.class );
+                intent.putExtra("aluno", aluno);//Enviar pra outra activity
+                startActivity(intent);
+
+            }
+        }); //take to event in the item at the list
+
+
+//        listaAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> lista, View item, int position, long id) {
+//                Toast.makeText(ListaAlunosActivity.this, "Clique Longo", Toast.LENGTH_SHORT).show();
+//                return false;// Passa pra frente outro evento
+//            }
+//        });
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-
-        });
-
-
-
 
         Button novoAluno = (Button) findViewById(R.id.criarAluno);
         novoAluno.setOnClickListener(new View.OnClickListener() {

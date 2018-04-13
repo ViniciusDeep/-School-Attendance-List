@@ -28,18 +28,14 @@ public class FormularioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_formulario);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Intent intent = getIntent();
+        Aluno aluno = (Aluno) intent.getSerializableExtra("aluno"); //Recuperar dados do aluno, e colocar na variável aluno na vaserialazable
         helper = new FormularioHelper(this);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        if(aluno != null) {
+            helper.preencheFormulario(aluno);
+        }
 
 
-            }
-        });
 
 
     }

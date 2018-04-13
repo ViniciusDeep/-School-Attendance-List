@@ -1,9 +1,10 @@
 package br.com.viniciusdeep.agenda.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Aluno {
-
+public class Aluno implements Serializable  {
+//Informar que ocorrerá uma transfêrencia binária
 
     private String nome;
     private String endereco;

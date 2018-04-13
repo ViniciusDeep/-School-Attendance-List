@@ -16,7 +16,8 @@
         android:layout_height="wrap_content">  </ListView>
 
 
-    <Button android:layout_width="56dp"
+        <Button
+            android:layout_width="56dp"
             android:layout_height="56dp"
             android:text="+"
             android:layout_below="@+id/lista_alunos"
@@ -28,7 +29,8 @@
             android:textSize="40sp"
             android:elevation="6dp"
             android:stateListAnimator="@null"
-            android:id="@+id/criarAluno"/>
+            android:id="@+id/criarAluno"
+            android:layout_gravity="end|bottom"/>
 
 
 
