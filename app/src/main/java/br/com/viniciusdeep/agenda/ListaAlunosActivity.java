@@ -91,14 +91,34 @@ public class ListaAlunosActivity extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         final Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(info.position); //pegar aluno na lista
 
+
+        String telefone = aluno.getTelefone();
+        MenuItem itemSMS = menu.add("Enviar SMS");
+        Intent intentSms = new Intent(Intent.ACTION_VIEW);
+        intentSms.setData(Uri.parse("sms:"+ telefone));
+        itemSMS.setIntent(intentSms);
+
+
+        MenuItem itemEndereco = menu.add("Mostrar Endereço no Mapa ");
+        Intent intentEndereco = new Intent(Intent.ACTION_VIEW);
+        intentEndereco.setData(Uri.parse("geo:0,0?q="+ aluno.getEndereco()));
+        itemEndereco.setIntent(intentEndereco);
+
+
+
         MenuItem itemSite = menu.add("Visitar Site");
-        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Intent intentSite = new Intent(Intent.ACTION_VIEW); //intent implicita, quando quer aproveitar algo do celular, ou que o usuário vai colocar
         String site = aluno.getSite();
         if(!site.startsWith("http://")) {
             site = "http://" + site;
         }
-        intent.setData(Uri.parse(site));
-        itemSite.setIntent(intent);
+        intentSite.setData(Uri.parse(site));
+        itemSite.setIntent(intentSite);
+
+
+
+
+
 
         MenuItem deletar = menu.add("Deletar");
         deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
