@@ -44,9 +44,9 @@ public class AlunoDao extends SQLiteOpenHelper{
         ContentValues dados = new ContentValues();
         dados.put("nome", aluno.getNome());
         dados.put("site",aluno.getSite());
-        dados.put("telefone", aluno.getTelefone());
-        dados.put("endereco", aluno.getEndereco());
-        dados.put("nota", aluno.getNota());
+        dados.put("telefone",aluno.getTelefone());
+        dados.put("endereco",aluno.getEndereco());
+        dados.put("nota",aluno.getNota());
         return dados;
     }
 
@@ -60,15 +60,11 @@ public class AlunoDao extends SQLiteOpenHelper{
             aluno.setId(c.getLong(c.getColumnIndex("id")));
             aluno.setNome(c.getString(c.getColumnIndex("nome")));
             aluno.setEndereco(c.getString(c.getColumnIndex("endereco")));
-            aluno.setTelefone(c.getColumnName(c.getColumnIndex("telefone")));
-            aluno.setSite(c.getColumnName(c.getColumnIndex("site")));
+            aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
+            aluno.setSite(c.getString(c.getColumnIndex("site")));
             aluno.setNota(c.getDouble(c.getColumnIndex("nota")));
-
-
             alunos.add(aluno); //Adicionando aluno criado
         }
-
-
         c.close();
         return alunos;
 
