@@ -26,11 +26,12 @@ public class FormularioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
+        helper = new FormularioHelper(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
         Aluno aluno = (Aluno) intent.getSerializableExtra("aluno"); //Recuperar dados do aluno, e colocar na variável aluno na vaserialazable
-        helper = new FormularioHelper(this);
+
         if(aluno != null) {
             helper.preencheFormulario(aluno);
         }
@@ -51,18 +52,20 @@ public class FormularioActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()){
             case R.id.menu_ok:
                 Aluno aluno = helper.pegaAluno();
-                Toast.makeText(FormularioActivity.this, "Aluno " + aluno.getNome() + " Salvo", Toast.LENGTH_SHORT).show();
-
                 AlunoDao dao = new AlunoDao(this);
-                dao.insert(aluno);
+
+                if(aluno.getId() != null){
+                    dao.altera(aluno);
+                }else{
+                    dao.insert(aluno);
+                }
+
+
                 dao.close();
-
-
-
-
+                Toast.makeText(FormularioActivity.this, "Aluno " + aluno.getNome() + " salvo!", Toast.LENGTH_SHORT).show();
                 finish();
                 break;
         }
