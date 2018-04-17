@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -11,6 +13,45 @@
     tools:showIn="@layout/activity_formulario"
     android:orientation="vertical">
 
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:max="10"
+        android:layout_gravity="center"
+        />
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="137dp"
+            android:src="@drawable/person"
+            android:id="@+id/formulario_image"/>
+
+        <Button
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="130dp"
+            android:background="@drawable/cam"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/formulario_button_image"/>
+
+    </RelativeLayout>
+    
+
+    
+    
 
     <EditText android:hint="Nome:"
         android:layout_width="match_parent"
@@ -44,3 +85,4 @@
 
 
 </LinearLayout>
+</ScrollView>

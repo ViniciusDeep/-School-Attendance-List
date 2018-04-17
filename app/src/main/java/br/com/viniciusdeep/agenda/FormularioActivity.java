@@ -1,7 +1,9 @@
 package br.com.viniciusdeep.agenda;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.File;
+import java.util.List;
 
 import br.com.viniciusdeep.agenda.Dao.AlunoDao;
 import br.com.viniciusdeep.agenda.modelo.Aluno;
@@ -35,6 +40,18 @@ public class FormularioActivity extends AppCompatActivity {
             helper.preencheFormulario(aluno);
         }
 
+        Button button_image = (Button) findViewById(R.id.formulario_button_image);
+        button_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                String awayPhoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+                File archiveImage = new File(awayPhoto);
+                intentImage.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(archiveImage));
+                startActivity(intentImage);
+
+            }
+        });
 
 
 
