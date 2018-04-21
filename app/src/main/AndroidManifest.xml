@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,11 +29,19 @@
             android:name=".FormularioActivity"
             android:label="@string/title_activity_formulario"
             android:theme="@style/AppTheme.NoActionBar">
-
-
-
-
         </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+
     </application>
 
 </manifest>
